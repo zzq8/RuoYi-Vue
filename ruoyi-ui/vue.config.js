@@ -37,7 +37,8 @@ module.exports = {
       [process.env.VUE_APP_BASE_API]: {
         target: `http://localhost:8080`,
         changeOrigin: true,
-        pathRewrite: {
+        pathRewrite: {// ['^' + process.env.VUE_APP_BASE_API] 这段代码是一个正则表达式，用于匹配需要进行路径重写的请求路径。
+         // 在这里，^ 表示匹配路径的开头，process.env.VUE_APP_BASE_API 是一个环境变量，代表了需要代理的 API 基础路径
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }
       }

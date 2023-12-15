@@ -34,6 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
     
     <select id="selectConfig" parameterType="SysConfig" resultMap="SysConfigResult">
+        -- XD: 学到一招，相当于字符串拼接   fragment
         <include refid="selectConfigVo"/>
         <include refid="sqlwhereSearch"/>
     </select>
