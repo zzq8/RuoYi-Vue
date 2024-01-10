@@ -42,11 +42,13 @@ public class CaptchaController
     private ISysConfigService configService;
     /**
      * 生成验证码
+     * XD: 传给前端一个   1）Base64图片   2）UUID
      */
     @GetMapping("/captchaImage")
     public AjaxResult getCode(HttpServletResponse response) throws IOException
     {
         AjaxResult ajax = AjaxResult.success();
+        // XD：这里是否开启状态也会写入 Redis
         boolean captchaEnabled = configService.selectCaptchaEnabled();
         ajax.put("captchaEnabled", captchaEnabled);
         if (!captchaEnabled)
@@ -65,6 +67,9 @@ public class CaptchaController
         String captchaType = RuoYiConfig.getCaptchaType();
         if ("math".equals(captchaType))
         {
+            // 核心方法 --> 返回一个数学表达式类似于： 5-1=?@4     5-1=? 给前端，4 写入Redis
+            // 这里的验证码生成使用了google kaptcha的验证码组件，没有重复造轮子，具体的生成逻辑作者重写了
+            // 这里生成表达式的方法（重写）在 com.ruoyi.framework.config包下的KaptchaTextCreator验证码文本生成器类
             String capText = captchaProducerMath.createText();
             capStr = capText.substring(0, capText.lastIndexOf("@"));
             code = capText.substring(capText.lastIndexOf("@") + 1);
@@ -81,6 +86,7 @@ public class CaptchaController
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
         try
         {
+            //将图像对象写入输出流中，以便将其保存为 JPEG 格式的图像文件或将图像发送到网络等。   第二个参数用于指定要写入的图像格式，以确保 ImageIO 使用正确的编码器将图像对象编码为相应格式的图像数据。
             ImageIO.write(image, "jpg", os);
         }
         catch (IOException e)

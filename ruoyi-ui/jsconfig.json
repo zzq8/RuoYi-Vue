@@ -1,0 +1,14 @@
+//vscode默认不能根据vue中webpage设置的@等地址进行跳转
+//用下面的方法，在vue页面中import引入的组件使用@引入之后就可以跳转了，但是在require中引入的还是不能跳转
+//XD: 还没 idea 好使，一下就跳转成功
+{
+    "allowJs": true,
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+  }  
