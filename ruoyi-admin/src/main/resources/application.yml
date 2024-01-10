@@ -129,3 +129,10 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"   #这里双引号

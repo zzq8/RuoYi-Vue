@@ -8,7 +8,7 @@ import com.ruoyi.common.utils.StringUtils;
  * 
  * @author ruoyi
  */
-@Component("ryTask")
+@Component   //("ryTask")         注意Spring容器里面 bean 默认开头字母都是小写 ryTask  actuator核实了一下
 public class RyTask
 {
     public void ryMultipleParams(String s, Boolean b, Long l, Double d, Integer i)

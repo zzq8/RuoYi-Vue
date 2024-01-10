@@ -1,8 +1,5 @@
 package com.ruoyi.framework.manager.factory;
 
-import java.util.TimerTask;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.utils.LogUtils;
 import com.ruoyi.common.utils.ServletUtils;
@@ -15,6 +12,10 @@ import com.ruoyi.system.domain.SysOperLog;
 import com.ruoyi.system.service.ISysLogininforService;
 import com.ruoyi.system.service.ISysOperLogService;
 import eu.bitwalker.useragentutils.UserAgent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.TimerTask;
 
 /**
  * 异步工厂（产生任务用）
@@ -74,6 +75,11 @@ public class AsyncFactory
                 {
                     logininfor.setStatus(Constants.FAIL);
                 }
+                /**
+                 * XD：这里是因为本类只是个工具类，没有加 @Component 托管到 Spring 所以用这种 API 方式获取 Bean
+                 * 使用 SpringUtils.getBean(ISysLogininforService.class) 可以在任何地方手动获取 Bean 对象，不受 Spring 容器的控制。
+                 * 而 @Autowired 注解需要在受 Spring 管理的类中使用，由 Spring 容器负责注入依赖。
+                 */
                 // 插入数据
                 SpringUtils.getBean(ISysLogininforService.class).insertLogininfor(logininfor);
             }

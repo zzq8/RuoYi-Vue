@@ -44,6 +44,8 @@ public class ThreadPoolConfig
 
     /**
      * 执行周期性或定时任务
+     * XD ScheduledThreadPoolExecutor 则是 ThreadPoolExecutor 的一个子类，它继承了 ThreadPoolExecutor 的功能
+     * 并扩展了支持定时任务调度的能力。它内部包含一个定时任务调度器，可以按照指定的时间间隔或时间点来定期执行任务。
      */
     @Bean(name = "scheduledExecutorService")
     protected ScheduledExecutorService scheduledExecutorService()
