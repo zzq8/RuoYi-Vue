@@ -11,6 +11,7 @@ import java.util.Set;
  * 登录用户身份权限
  * 
  * @author ruoyi
+ * XD: implements UserDetails    是SpringSecurity的知识
  */
 public class LoginUser implements UserDetails
 {

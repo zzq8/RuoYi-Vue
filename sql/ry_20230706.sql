@@ -1,6 +1,7 @@
 -- ----------------------------
 -- 1、部门表
 -- ----------------------------
+use `ry-vue`;
 drop table if exists sys_dept;
 create table sys_dept (
   dept_id           bigint(20)      not null auto_increment    comment '部门id',
