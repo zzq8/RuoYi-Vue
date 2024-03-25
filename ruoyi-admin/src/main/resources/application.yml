@@ -96,8 +96,8 @@ token:
   header: Authorization
   # 令牌密钥
   secret: abcdefghijklmnopqrstuvwxyz
-  # 令牌有效期（默认30分钟）
-  expireTime: 30
+  # 令牌有效期（默认30分钟）     XD 这里我看源码貌似只针对 Redis 在用， JWT都没过期时间我 parse 了没看到过期限制
+  expireTime: 1
 
 # MyBatis配置
 mybatis:
